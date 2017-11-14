@@ -1,4 +1,5 @@
 body {background-image: url(../images/WheatField.jpg);
+	background-size: cover;
 }
 
 header {padding: 10px 0 80px 10px;

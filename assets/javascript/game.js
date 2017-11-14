@@ -30,18 +30,37 @@ for (i = 0; i < arrWord.length; i++) {
 	wordToGuess += blanks[i] + " ";
 }
 
+//display array of blanks, which is the word to guess, without the comas
+var arrBlanks = wordToGuess.split("");
+console.log("Array of blanks" + arrBlanks);
+
+document.getElementById("start").textContent = "Name of piece";
+document.getElementById("word").textContent = arrBlanks.join("");
+document.getElementById("wins").textContent = "Wins";
+document.getElementById("guessesLeft").textContent = "Guesses remaining";
+document.getElementById("guessesMade").textContent = "Guesses made so far";
+
 document.onkeyup = function(event) {
 	//keuUp becomes capitalized verstion of event key
 	var keyUp = event.key.toUpperCase();
+	console.log(keyUp);
+
 
 	for (var i = 0; i < arrWord.length; i++) {
-		if (event.keyCode === arrWord[i].keyCode) {
-			arrWord[i] = arrWord[i].replace(arrWord[i], keyUp);
-			console.log(arrWord);
+		if (arrWord[i].includes(keyUp)) {
+			arrBlanks[i] = keyUp;
+			
 		}	
 	}
-	
+	document.getElementById("word").textContent = arrBlanks.join("");
+	console.log(arrBlanks);
 };
+
+// for (var i = 0; i < wordGuessDisplay.length; i++) {
+// 	if (wordGuessDisplay[i] != " ") {
+// 		wordGuessDisplay[i] = "_";
+// 	}	
+// }
 
 	// //if event key had not been pressed before, run loop
 	// if (event.keyCode >= 65 && event.keyCode <= 90) {
