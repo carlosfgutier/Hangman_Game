@@ -9,12 +9,13 @@ let all = [];
 const choices = ["The Trinquetaille Bridge", "The Yellow House", "Four Cut Sunflowers", "Noon Rest From Work"];
 let pick = Math.floor(Math.random() * choices.length)
 let pickArr = choices[pick].toUpperCase().split("");
-console.log(pickArr);
-for (var i = 0; i < pickArr.length; i++) {
+
+// create array of blanks
+for (let i = 0; i < pickArr.length; i++) {
 	blanks.push("_ ")
 }
 
-// Lay out html
+// Generate HTML
 $( document ).ready(function() {
 	$('#word').text(blanks.join(''));
 	$('#wins').text('Wins: ' + wins);
@@ -23,7 +24,61 @@ $( document ).ready(function() {
 	$('#allGuesses').text('All Guesses: ' + all);
 });
 
+console.log(pickArr);
+console.log(blanks);
 
+// REPLACE SPACES TO SHOW SPACES
+// for (let i = 0; i < pickArr.length; i++) {
+	
+// 	if (pickArr[i] === ' ') {
+// 		blanks.splice(blanks[i], 1, '0');
+// 		console.log(blanks);
+// 	}
+// }
+
+document.onkeyup = function() {
+	let keyUp = event.key.toUpperCase();
+	console.log(keyUp);
+
+	if (pickArr.includes(keyUp)) {
+		correct.push(keyUp);
+		all.push(keyUp)
+		$('#correctGuesses').text('Correct Guesses: ' + correct);
+		$('#allGuesses').text('All Guesses: ' + all);
+	} else {
+		guessesLeft --;
+		$('#guessesLeft').text('Guesses Left: ' + guessesLeft);
+
+		if (guessesLeft === 0) {
+			alert('you lost');
+			//restart
+		}
+	}
+
+	for (var i = 0; i < pickArr.length; i++) {
+		if (pickArr[i].includes(keyUp)) {
+			blanks[i] = keyUp;
+			$('#word').text(blanks.join(''));
+		}
+	}
+};
+
+
+// document.onkeyup = function(event) {
+// 	//keuUp becomes capitalized verstion of event key
+// 	var keyUp = event.key.toUpperCase();
+// 	console.log(keyUp);
+
+
+// 	for (var i = 0; i < arrWord.length; i++) {
+// 		if (arrWord[i].includes(keyUp)) {
+// 			arrBlanks[i] = keyUp;
+			
+// 		}	
+// 	}
+// 	document.getElementById("word").textContent = arrBlanks.join("");
+// 	console.log(arrBlanks);
+// };
 
 // //alphabet
 // var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z'"];
