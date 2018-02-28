@@ -1,11 +1,12 @@
 body {background-image: url(../images/WheatField.jpg);
 	background-size: cover;
+	font-family: 'Noto Sans', sans-serif;
 }
 
 header {padding: 10px 0 80px 10px;
 }
 
-h1 {font-family: 'Noto Sans', sans-serif;
+h1 {
 	font-size: 35px;
 	font-weight: bolder;
 	line-height: 40px;
@@ -16,10 +17,7 @@ section {font-size: 20px;
 	padding: 10px 0 223px 10px;
 }
 
-p {font-family: 'Noto Sans', sans-serif;
-}
-
-footer {font-family: 'Noto Sans', sans-serif;
+footer {
 	position: fixed;
 	bottom: 0;
 	font-size: 13px;
