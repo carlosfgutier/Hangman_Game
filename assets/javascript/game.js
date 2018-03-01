@@ -1,33 +1,18 @@
-let word = "";
 let blanks = [];
 let wins = 0;
 let guessesLeft = 9;
 let correct = [];
 let all = [];
-
-// Pc chooses
 const choices = ["The Trinquetaille Bridge", "The Yellow House", "Four Cut Sunflowers", "Noon Rest From Work"];
-let pick = Math.floor(Math.random() * choices.length)
-let pickArr = choices[pick].toUpperCase().split("");
 
-// Create array of blanks
-for (let i = 0; i < pickArr.length; i++) {
-	blanks.push("_ ")
-}
-
-// Generate HTML
-$( document ).ready(function() {
-	$('#word').text(blanks.join(''));
-	$('#wins').text('Wins: ' + wins);
-	$('#guessesLeft').text('Guesses Left: ' + guessesLeft);
-	$('#correctGuesses').text('Correct Guesses: ' + correct);
-	$('#allGuesses').text('All Guesses: ' + all);
-});
-
-console.log(pickArr);
-console.log(blanks);
+newWord();
 
 // REPLACE SPACES TO SHOW SPACES
+for (var i = 0; i < pickArr.length; i++) {
+	if (pickArr[i] === ' ') {
+		blanks[i] = ' ';
+	}
+}
 
 document.onkeyup = function(event) {
 	let keyUp = event.key.toUpperCase();
@@ -35,6 +20,7 @@ document.onkeyup = function(event) {
 
 	// Checks if key has been pressed
 	if (all.indexOf(keyUp) < 0 && event.keyCode >= 65 && event.keyCode <= 90){
+		
 		// If guess is correct...
 		if (pickArr.includes(keyUp)) {
 			correct.push(keyUp);
@@ -50,8 +36,9 @@ document.onkeyup = function(event) {
 			$('#allGuesses').text('All Guesses: ' + all);
 
 			if (guessesLeft === 0) {
+				//DO SOMETHING BESIDES AND ALERT
 				alert('you lost');
-				// RESET FUNCTION
+				newWord();
 			}
 		}
 	}
@@ -62,4 +49,31 @@ document.onkeyup = function(event) {
 			$('#word').text(blanks.join(''));
 		}
 	}
+};
+
+function newWord() {
+	console.log('NEW GAME')
+	blanks = [];
+	guessesLeft = 9;
+	correct = [];
+	all = [];
+
+	// Pc chooses
+	pick = Math.floor(Math.random() * choices.length);
+	pickArr = choices[pick].toUpperCase().split("");
+
+	// Create array of blanks
+	for (let i = 0; i < pickArr.length; i++) {
+		blanks.push("_ ")
+	}
+
+	console.log(pickArr);
+	console.log(blanks);
+
+	// Generate HTML
+	$('#word').text(blanks.join(''));
+	$('#wins').text('Wins: ' + wins);
+	$('#guessesLeft').text('Guesses Left: ' + guessesLeft);
+	$('#correctGuesses').text('Correct Guesses: ' + correct);
+	$('#allGuesses').text('All Guesses: ' + all);
 };
