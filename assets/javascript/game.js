@@ -7,13 +7,6 @@ const choices = ["The Trinquetaille Bridge", "The Yellow House", "Four Cut Sunfl
 
 newWord();
 
-// REPLACE SPACES TO SHOW SPACES
-for (var i = 0; i < pickArr.length; i++) {
-	if (pickArr[i] === ' ') {
-		blanks[i] = ' ';
-	}
-}
-
 document.onkeyup = function(event) {
 	let keyUp = event.key.toUpperCase();
 	console.log(keyUp);
@@ -28,6 +21,7 @@ document.onkeyup = function(event) {
 
 			$('#correctGuesses').text('Correct Guesses: ' + correct);
 			$('#allGuesses').text('All Guesses: ' + all);
+
 		} else {
 			guessesLeft --;
 			all.push(keyUp);
@@ -36,7 +30,6 @@ document.onkeyup = function(event) {
 			$('#allGuesses').text('All Guesses: ' + all);
 
 			if (guessesLeft === 0) {
-				//DO SOMETHING BESIDES AND ALERT
 				alert('you lost');
 				newWord();
 			}
@@ -47,6 +40,13 @@ document.onkeyup = function(event) {
 		if (pickArr[i].includes(keyUp)) {
 			blanks[i] = keyUp;
 			$('#word').text(blanks.join(''));
+
+			// Check for win condition
+			if (pickArr.join('') === blanks.join('')) {
+				alert('Good job. The name of the piece is: ' + blanks.join(''));
+				wins ++;
+				newWord();
+			} 
 		}
 	}
 };
@@ -67,13 +67,17 @@ function newWord() {
 		blanks.push("_ ")
 	}
 
-	console.log(pickArr);
-	console.log(blanks);
-
 	// Generate HTML
 	$('#word').text(blanks.join(''));
 	$('#wins').text('Wins: ' + wins);
 	$('#guessesLeft').text('Guesses Left: ' + guessesLeft);
 	$('#correctGuesses').text('Correct Guesses: ' + correct);
 	$('#allGuesses').text('All Guesses: ' + all);
+
+	// Show spaces
+	for (var i = 0; i < pickArr.length; i++) {
+		if (pickArr[i] === ' ') {
+			blanks[i] = ' ';
+		}
+	}
 };
