@@ -1,6 +1,8 @@
 body {background-image: url(../images/WheatField.jpg);
 	background-size: cover;
 	font-family: 'Noto Sans', sans-serif;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 
 header {padding: 10px 0 80px 10px;
