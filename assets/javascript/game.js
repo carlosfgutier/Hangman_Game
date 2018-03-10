@@ -9,7 +9,6 @@ newWord();
 
 document.onkeyup = function(event) {
 	let keyUp = event.key.toUpperCase();
-	console.log(keyUp);
 
 	// Checks if key has been pressed
 	if (all.indexOf(keyUp) < 0 && event.keyCode >= 65 && event.keyCode <= 90){
@@ -65,6 +64,17 @@ function newWord() {
 	// Create array of blanks
 	for (let i = 0; i < pickArr.length; i++) {
 		blanks.push("_ ")
+	}
+
+	// Update background
+	if (pick === 0) {
+		$('body').css('background-image', 'url("assets/images/1.jpg")');
+	} else if (pick === 1) {
+		$('body').css('background-image', 'url("assets/images/2.jpg")');
+	} else if (pick === 2) {
+		$('body').css('background-image', 'url("assets/images/3.jpg")');
+	} else if (pick === 3) {
+		$('body').css('background-image', 'url("assets/images/4.jpg")');
 	}
 
 	// Generate HTML
